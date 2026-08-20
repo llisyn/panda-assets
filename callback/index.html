@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>인증 코드</title>
+<style>
+  :root{color-scheme:light dark}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;
+       max-width:640px;margin:80px auto;padding:0 20px;text-align:center;line-height:1.7}
+  code{display:block;background:#f4f4f4;padding:16px;border-radius:8px;word-break:break-all;
+       margin:20px 0;font-size:14px;color:#111}
+  button{padding:10px 24px;border-radius:8px;border:none;background:#333;color:#fff;
+         font-size:15px;cursor:pointer}
+  .ok{color:#059669;font-weight:600}
+</style>
+</head>
+<body>
+<h2>🐼 인증 코드 도착</h2>
+<p>아래 코드를 복사해서 Claude에게 붙여넣어 주세요.</p>
+<code id="code">(코드 없음 — 주소에 ?code= 가 없어요)</code>
+<button onclick="navigator.clipboard.writeText(document.getElementById('code').textContent);
+                 this.textContent='복사됨 ✓';this.className='ok'">복사</button>
+<script>
+  const c = new URLSearchParams(location.search).get("code");
+  if (c) document.getElementById("code").textContent = c.replace(/#_$/, "");
+</script>
+</body>
+</html>
